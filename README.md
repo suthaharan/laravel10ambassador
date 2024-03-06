@@ -26,3 +26,9 @@ When API's are created, use Symfony\Component\HttpFoundation\Response so you cou
 ```php
     return response($user, Response::HTTP_CREATED)
 ```
+
+* Package required for JWT token generation
+$ composer require laravel/sanctum 
+$ php artisan migrate (execute it inside the docker container)
+- Add HasApiTokens for laravel jwt token generation in the controller
+- - In config/cors.php set support_credentials to true to support passing the values to frontend
