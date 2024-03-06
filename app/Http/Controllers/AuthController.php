@@ -43,6 +43,7 @@ class AuthController extends Controller
         $scope = $adminLogin ? 'admin' : 'ambassador';
 
         // Adding in a scope as admin for login
+        // Sanctum to be installed for JWT token
         $jwt = $user->createToken('token', [$scope])->plainTextToken;
 
         $cookie = cookie('jwt', $jwt, 60*24); //1 day

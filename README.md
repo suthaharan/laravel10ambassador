@@ -32,3 +32,18 @@ $ composer require laravel/sanctum
 $ php artisan migrate (execute it inside the docker container)
 - Add HasApiTokens for laravel jwt token generation in the controller
 - - In config/cors.php set support_credentials to true to support passing the values to frontend
+- Add the authenticate cookie to bearer token by modifying middleware/authenticate
+```php
+ public function handle($request, Closure $next, ...$guards)
+    {
+        // Get the token from cookie
+        if($jwt = $request->cookie('jwt')){
+            // Manually set the authorization headers
+            $request->headers->set('Authorization', 'Bearer '. $jwt);
+        }
+
+        $this->authenticate($request, $guards);
+
+        return $next($request);
+    }
+```
