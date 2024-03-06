@@ -60,6 +60,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
     public function scopeAdmins($query){
         return $query->where('is_admin', 1);
     }
@@ -71,12 +72,15 @@ class User extends Authenticatable
     public function orders(){
         return $this->hasMany(Order::class); //connection in Laravel
     }
+
     public function ordersCompleted(){
         return $this->hasMany(Order::class)->where('complete', 1); //connection in Laravel
     }
+
     public function getRevenueAttribute(){
         return $this->ordersCompleted->sum(fn(Order $order) => $order->ambassador_revenue);
     }
+
 
     public function getNameAttribute(){
         return $this->first_name . ' '. $this->last_name;
