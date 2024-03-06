@@ -47,3 +47,12 @@ $ php artisan migrate (execute it inside the docker container)
         return $next($request);
     }
 ```
+
+#### Ambassador Controller
+
+$ php artisan make:controller AmbassadorController
+$ php artisan make:seeder AmbassadorSeeder
+$ php artisan db:seed
+
+$ php artisan ide:models
+

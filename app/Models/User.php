@@ -66,6 +66,7 @@ class User extends Authenticatable
     }
 
     public function scopeAmbassadors($query){
+        // using local scope
         return $query->where('is_admin', 0);
     }
 
